@@ -1,32 +1,31 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logout from '../logout';
+import 'tailwindcss/tailwind.css';
 
-const Sidebar: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
+interface SidebarProps {
+    isOpen: boolean;
+    onClose: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     return (
-        <div className={`fixed top-0 left-0 w-64 h-full bg-gray-800 text-white transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out md:translate-x-0 md:relative md:w-64`}>
+        <div className={`fixed top-0 left-0 w-64 h-full  bg-gray-800 text-white transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 md:w-64 md:h-full`}>
             <button
-                className="p-4 text-gray-400 hover:text-gray-300 md:hidden"
+                className="p-4 text-white md:hidden"
                 onClick={onClose}
             >
-                Close
+                X
             </button>
-            <div className="mt-8">
-                <ul>
-                    <li className="p-4">
-                        <Link to="/add-product" className="hover:text-gray-300">
-                            Add Products
-                        </Link>
-                    </li>
-                    <li className="p-4">
-                        <Logout />
-                    </li>
-                </ul>
-            </div>
+            <h1 className='text-white font-bold ml-5 text-xl mt-5 ' >Admin sahifa</h1>
+            <ul className="mt-16">
+                <li className="border-b border-gray-700">
+                    <Link to="/add-product" className="block p-4 hover:bg-gray-700">
+                        Mahsulot qo'shish
+                    </Link>
+                </li>
+            </ul>
         </div>
     );
 };
 
 export default Sidebar;
-
